@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: starly-backend
+  mongodb:
+    database: starly-dev
+  data:
+    mongodb:
+      auto-index-creation: true
