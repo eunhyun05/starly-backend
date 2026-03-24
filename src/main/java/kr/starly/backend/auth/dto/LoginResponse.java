@@ -3,11 +3,11 @@ package kr.starly.backend.auth.dto;
 import java.util.Date;
 
 public record LoginResponse(
-        String token,
-        Account account
+        String accessToken,
+        AccountInfo account
 ) {
 
-    record Account(
+    public record AccountInfo(
             String id,
             String email,
             Date createdAt

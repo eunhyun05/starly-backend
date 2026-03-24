@@ -2,6 +2,7 @@ package kr.starly.backend.account.service;
 
 import kr.starly.backend.account.dto.CreateAccountRequest;
 import kr.starly.backend.account.dto.CreateAccountResponse;
+import kr.starly.backend.account.exception.AccountNotFoundException;
 import kr.starly.backend.account.exception.EmailAlreadyExistsException;
 import kr.starly.backend.account.model.Account;
 import kr.starly.backend.account.repository.AccountRepository;
@@ -32,5 +33,17 @@ public class AccountServiceImpl implements AccountService {
                                     .build()
                     ).map(account -> new CreateAccountResponse(account.getId(), account.getEmail(), account.getCreatedAt()));
                 });
+    }
+
+    @Override
+    public Mono<CreateAccountResponse> findByEmail(String email) {
+        return repository.findByEmail(email)
+                .map(account -> new CreateAccountResponse(account.getId(), account.getEmail(), account.getCreatedAt()));
+    }
+
+    @Override
+    public Mono<Account> findAccountByEmail(String email) {
+        return repository.findByEmail(email)
+                .switchIfEmpty(Mono.error(new AccountNotFoundException()));
     }
 }

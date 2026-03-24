@@ -11,7 +11,7 @@ spring:
       port: 6379
 
 jwt:
-  secret: b8bd8124ca33f2a6679f7d28d7613cb131a6540be2c735ab5266d49cf0339b0e
+  secret:
   access-token-expiration: 900000      # 15분 (ms)
   refresh-token-expiration: 604800000  # 7일 (ms)
   refresh-token-cookie-max-age: 604800 # 7일 (s)
